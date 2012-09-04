@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+
+OnePass = require('one_pass');
+var app = new OnePass.App(process.argv);
+process.exit(app.run());
