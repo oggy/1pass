@@ -24,34 +24,34 @@ makeApp = (args, password) ->
 
 module.exports =
   "App#run show returns 0 if the password is correct": (beforeExit, assert) ->
-    app = makeApp(['-d', keychainPath, 'show', 'Login'], 'master-password')
+    app = makeApp(['-d', keychainPath, 'show', 'my-login'], 'master-password')
     app.run (status) ->
       assert.equal(status, 0)
 
   "App#run show returns 1 if the password is incorrect": (beforeExit, assert) ->
-    app = makeApp(['-d', keychainPath, 'show', 'Login'], 'wrong')
+    app = makeApp(['-d', keychainPath, 'show', 'my-login'], 'wrong')
     app.run (status) ->
       assert.equal(status, 1)
 
   "App#run show prints the details of matched items": (beforeExit, assert) ->
-    app = makeApp(['-d', keychainPath, 'show', 'Login'], 'master-password')
+    app = makeApp(['-d', keychainPath, 'show', 'my-login'], 'master-password')
     app.run (status) ->
-      assert.ok(app.output.contains("Login"))
-      assert.ok(app.output.contains("password"))
+      assert.ok(app.output.contains('my-login'))
+      assert.ok(app.output.contains('my-password'))
 
   "App#run list returns 0 without asking for a password": (beforeExit, assert) ->
-    app = makeApp(['-d', keychainPath, 'list', 'Login'])
+    app = makeApp(['-d', keychainPath, 'list', 'my-login'])
     app.run (status) ->
       assert.equal(status, 0)
 
   "App#run list prints the name of matched items, and not details": (beforeExit, assert) ->
-    app = makeApp(['-d', keychainPath, 'list', 'Login'])
+    app = makeApp(['-d', keychainPath, 'list', 'my-login'])
     app.run (status) ->
-      assert.ok(app.output.contains("Login"))
-      assert.ok(!app.output.contains("password"))
+      assert.ok(app.output.contains('my-login'))
+      assert.ok(!app.output.contains('my-password'))
 
   "App#run defaults to running the show command": (beforeExit, assert) ->
-    app = makeApp(['-d', keychainPath, 'Login'], 'master-password')
+    app = makeApp(['-d', keychainPath, 'my-login'], 'master-password')
     app.run (status) ->
-      assert.ok(app.output.contains("Login"))
-      assert.ok(app.output.contains("password"))
+      assert.ok(app.output.contains('my-login'))
+      assert.ok(app.output.contains('my-password'))

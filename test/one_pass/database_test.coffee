@@ -15,16 +15,16 @@ module.exports =
 
   'Database#search returns matching items': (beforeExit, assert) ->
     db = new Database('test/data/1Password.agilekeychain')
-    items = db.search('Login')
-    assert.deepEqual((item.name for item in items), ['Login'])
+    items = db.search('my-minimal-login')
+    assert.deepEqual((item.name for item in items), ['my-minimal-login'])
 
   'Database#search unlocks the items if the database is unlocked': (beforeExit, assert) ->
     db = new Database('test/data/1Password.agilekeychain')
     assert.equal(db.unlock('master-password'), true)
-    items = db.search('Login')
+    items = db.search('my-minimal-login')
     assert.equal(items[0].locked(), false)
 
   'Database#search does not unlock the items if the database is still locked': (beforeExit, assert) ->
     db = new Database('test/data/1Password.agilekeychain')
-    items = db.search('Login')
+    items = db.search('my-minimal-login')
     assert.equal(items[0].locked(), true)
