@@ -4,11 +4,11 @@ TESTS = $(wildcard test/*.coffee test/*/*.coffee)
 VENDOR_JS = node_modules/one_pass/vendor.js
 
 .DEFAULT_TARGET = default
-default: $(LIB_JS)
+default: $(LIB_JS) $(VENDOR_JS)
 
-.PHONY: test clean
+.PHONY: default test clean
 
-test: $(LIB_JS) $(VENDOR_JS)
+test: default
 	expresso $(TESTS)
 
 clean:
