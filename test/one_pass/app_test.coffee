@@ -44,11 +44,23 @@ module.exports =
     app.run (status) ->
       assert.equal(status, 0)
 
-  "App#run list prints the name of matched items, and not details": (beforeExit, assert) ->
-    app = makeApp(['-d', keychainPath, 'list', 'my-login'])
+  "App#run list prints the name of matched items, without details": (beforeExit, assert) ->
+    app = makeApp(['-d', keychainPath, 'list'])
     app.run (status) ->
       assert.ok(app.output.contains('my-login'))
       assert.ok(!app.output.contains('my-password'))
+
+  "App#run list prints all items by default": (beforeExit, assert) ->
+    app = makeApp(['-d', keychainPath, 'list'])
+    app.run (status) ->
+      assert.ok(app.output.contains('my-login'))
+      assert.ok(app.output.contains('my-social-security-number'))
+
+  "App#run list filters items to those matching the argument, if any": (beforeExit, assert) ->
+    app = makeApp(['-d', keychainPath, 'list', 'my-login'])
+    app.run (status) ->
+      assert.ok(app.output.contains('my-login'))
+      assert.ok(!app.output.contains('my-social-security-number'))
 
   "App#run defaults to running the show command": (beforeExit, assert) ->
     app = makeApp(['-d', keychainPath, 'my-login'], 'master-password')

@@ -23,6 +23,11 @@ searchItems = [
 ]
 
 module.exports =
+  "Contents#search without a key returns all items": (beforeExit, assert) ->
+    contents = new Contents(searchItems)
+    result = contents.search()
+    assert.deepEqual((item.uuid for item in result), ['0', '1', '2', '3', '4', '5'])
+
   "Contents#search returns items whose name is exactly the key case-insensitively, if any": (beforeExit, assert) ->
     contents = new Contents(searchItems)
     result = contents.search('Bank of Foo')
