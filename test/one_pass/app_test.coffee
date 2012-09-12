@@ -39,6 +39,12 @@ module.exports =
       assert.ok(app.output.contains('my-login'))
       assert.ok(app.output.contains('my-password'))
 
+  "App#run show with -r prints raw representations": (beforeExit, assert) ->
+    app = makeApp(['-d', keychainPath, '-r', 'show', 'my-login'], 'master-password')
+    app.run (status) ->
+      assert.ok(app.output.contains('my-password'))
+      assert.ok(!app.output.contains('Password:'))
+
   "App#run list returns 0 without asking for a password": (beforeExit, assert) ->
     app = makeApp(['-d', keychainPath, 'list', 'my-login'])
     app.run (status) ->

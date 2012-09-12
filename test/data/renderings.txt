@@ -1,0 +1,383 @@
+## my-login
+
+my-login (Login)  http://my-login.example.com
+  Username: my-username
+  Password: my-password
+  my-text-field-name: my-field-value
+  my-checkbox-field-name: ✓
+
+  Notes:
+    my-notes
+
+## my-amazon-web-service
+
+my-amazon-web-service (Amazon Web Service)
+  Path: my-path
+  Email: my-email
+  Password: my-password
+  Access Key Id: my-access-key-id
+  Secret Access Key: my-secret-access-key
+
+  Notes:
+    my-notes
+
+## my-database
+
+my-database (Database)
+  Type: db2
+
+  Server: my-server
+  Port: my-port
+  Database: my-database
+  Username: my-username
+  Password: my-password
+
+  SID: my-sid
+  Alias: my-alias
+  Connection Options: my-connection-options
+
+  Notes:
+    my-notes
+
+## my-email-account
+
+my-email-account (Email Account)
+  Type: pop3
+  Username: my-username
+  Server: my-server
+  Port Number: my-port-number
+  Password: my-password
+  Security: none
+  Authentication Method: none
+
+  SMTP Server: my-smtp-server
+  Port Number: my-port-number
+  Username: my-username
+  Password: my-password
+  Security: none
+  Authentication Method: none
+
+  Provider: my-provider
+  Provider's Website: my-providers-website
+  Phone Number (Local): my-local-phone-number
+  Phone Number (Toll Free): my-toll-free-phone-number
+
+  Notes:
+    my-notes
+
+## my-ftp-account
+
+my-ftp-account (FTP Account)
+  Server: my-server
+  Path: my-path
+  User Name: my-user-name
+  Password: my-password
+
+  Provider: my-provider
+  Provider's Website: my-providers-website
+  Phone Number (Local): my-local-phone-number
+  Phone Number (Toll Free): my-toll-free-phone-number
+
+  Notes:
+    my-notes
+
+## my-generic-account
+
+my-generic-account (Generic Account)
+  Username: my-username
+  Password: my-password
+
+  Notes:
+    my-notes
+
+## my-instant-messenger
+
+my-instant-messenger (Instant Messenger)
+  Account Type: mobileme
+  User Name / Email / ID: my-user-name
+  Password: my-password
+  Server: my-server
+  Port: my-port
+
+  Notes:
+    my-notes
+
+## my-internet-provider
+
+my-internet-provider (Internet Provider)
+  User ID: my-user-id
+  Password: my-password
+  PIN: my-pin
+  Dialup Access Number: my-dialup-access-number
+
+  Website: my-website
+  Phone (Local): my-local-phone
+  Phone (Toll Free): my-toll-free-phone
+
+  Notes:
+    my-notes
+
+## my-mobile-me
+
+my-mobile-me (MobileMe)
+  Apple ID (email): my-email
+  Member: my-member
+  Password: my-password
+  Available iDisk Storage: my-available-idisk-storage
+  Renewal Date: 2012-09-10
+  Activation Key: my-activation-key
+
+  Notes:
+    my-notes
+
+## my-server
+
+my-server (Server)
+  URL: my-url
+  Username: my-username
+  Password: my-password
+
+  Admin Console URL: my-admin-console-url
+  Admin Console Username: my-admin-console-username
+  Console Password: my-console-password
+
+  Name: my-name
+  Website: my-website
+  Support URL: my-support-url
+  Support Phone #: my-support-phone-number
+
+  Notes:
+    my-notes
+
+## my-wireless-router
+
+my-wireless-router (Wireless Router)
+  Base Station Name: my-base-station-name
+  Base Station Password: my-base-station-password
+  Server / IP Address: my-server
+  AirPort ID: my-airport-id
+  Network Name: my-network-name
+  Wireless Security: none
+  Wireless Network Password: my-wireless-network-password
+  Attached Storage Password: my-attached-storage-password
+
+  Notes:
+    my-notes
+
+## my-itunes
+
+my-itunes (iTunes)
+  Apple ID (email): my-apple-id
+  Password: my-password
+  Security Question: my-security-question
+  Security Answer: my-security-answer
+
+  Notes:
+    my-notes
+
+## my-identity
+
+my-identity (Identity)
+  First Name: my-first-name
+  Initial: my-initial
+  Last Name: my-last-name
+  Sex: male
+  Birth Date: 2012-09-10
+  Occupation: my-occupation
+  Company: my-company
+  Department: my-department
+  Job Title: my-job-title
+
+  Country: us
+  State/Province: my-state
+  Address Line 1: my-address-line-1
+  Address Line 2: my-address-line-2
+  City/Town/Suburb: my-city
+  Zip/Postal Code: my-zip
+
+  DefaultPhone: my-default-phone
+  Home: my-home
+  Cell: my-cell
+  Business: my-business
+
+  Username: my-username
+  Reminder Question: my-reminder-question
+  Reminder Answer: my-reminder-answer
+  Email: my-email
+  Website: my-website
+  ICQ: my-icq
+  Skype: my-skype
+  AOL/AIM: my-aol
+  Yahoo: my-yahoo
+  MSN: my-msn
+  Forum Signature: my-forum-signature
+
+  Notes:
+    my-notes
+
+## my-secure-note
+
+my-secure-note (Secure Note)
+
+  Notes:
+    my-notes
+
+## my-software
+
+my-software (Software)
+  License Key: my-license-key
+
+  Licensed To: my-licensed-to
+  Registered Email: my-registered-email
+  Company: my-company
+  Download Page: my-download-page
+
+  Publisher: my-publisher
+  Website: my-website
+  Retail Price: my-retail-price
+  Support Email: my-support-email
+
+  Purchase Date: 2012-09-10
+  Order Number: my-order-number
+  Order Total: my-order-total
+
+  Notes:
+    my-notes
+
+## my-bank-account
+
+my-bank-account (Bank Account)
+  Bank Name: my-bank-name
+  Name on Account: my-name-on-account
+  Type: checking
+  Routing Number: my-routing-number
+  Account Number: my-account-number
+  SWIFT Code: my-swift-code
+  IBAN Number: my-iban-number
+  PIN: my-pin
+
+  Phone: my-phone
+  Address: my-address
+
+  Notes:
+    my-notes
+
+## my-credit-card
+
+my-credit-card (Credit Card)
+  Cardholder's Name: my-cardholders-name
+  Type: visa
+  Number: my-number
+  Verification Number: my-verification-number
+  Expiry Date: 2012-09
+  Valid From: 2012-09
+
+  Issuing Bank: my-issuing-bank
+  Phone (Local): my-local-phone
+  Phone (Toll Free): my-toll-free-number
+  Phone (International): my-international-phone
+  Website: my-website
+
+  PIN: my-pin
+  Credit Limit: my-credit-limit
+  Cash Withdrawal Limit: my-cash-withdrawal-limit
+  Interest Rate: my-interest-rate
+  Issue Number: my-issue-number
+
+  Notes:
+    my-notes
+
+## my-drivers-license
+
+my-drivers-license (Driver's License)
+  Full Name: my-full-name
+  Address: my-address
+  Date of Birth: 2012-09-10
+  Sex: male
+  Height: my-height
+  Number: my-number
+  License Class: my-license-class
+  Conditions / Restrictions: my-conditions
+  State: my-state
+  Country: my-country
+  Expiry Date: 2012-09
+
+  Notes:
+    my-notes
+
+## my-hunting-license
+
+my-hunting-license (Hunting License)
+  Full Name: my-full-name
+  Valid From: 2012-09-10
+  Expires: 2012-09-10
+  Approved Wildlife: my-approved-wildlife
+  Maximum Quota: my-maximum-quota
+  State: my-state
+  Country: my-country
+
+  Notes:
+    my-notes
+
+## my-membership
+
+my-membership (Membership)
+  Organization: my-organization
+  Website: my-website
+  Telephone: my-telephone
+  Member Name: my-member-name
+  Member Since: 2012-09
+  Expiry Date: 2012-09
+  Membership #: my-membership-number
+  Password: my-password
+
+  Notes:
+    my-notes
+
+## my-passport
+
+my-passport (Passport)
+  Type: my-type
+  Issuing Country: my-issuing-country
+  Number: my-number
+  Full Name: my-full-name
+  Sex: male
+  Nationality: my-nationality
+  Issuing Authority: my-issuing-authority
+  Date of Birth: 2012-09-10
+  Place of Birth: my-place-of-birth
+  Issued On: 2012-09-10
+  Expiry Date: 2012-09-10
+
+  Notes:
+    my-notes
+
+## my-reward-program
+
+my-reward-program (Reward Program)
+  Company Name: my-company-name
+  Member Name: my-member-name
+  Membership #: my-membership-number
+  PIN: my-pin
+
+  Membership # (Additional): my-membership-number
+  Member Since: 2012-09
+  Customer Service Phone: my-customer-service-phone
+  Reservations Phone: my-reservations-phone
+  Website: my-website
+
+  Notes:
+    my-notes
+
+## my-social-security-number
+
+my-social-security-number (Social Security Number)
+  Name: my-name
+  Number: my-number
+
+  Notes:
+    my-notes
+
+## my-minimal-login
+
+my-minimal-login (Login)
