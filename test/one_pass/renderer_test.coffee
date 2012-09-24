@@ -22,6 +22,12 @@ class StringStream
   write: (data) ->
     @data += data
 
+  contains: (pattern) ->
+    if typeof(pattern) == 'string'
+      @data.indexOf(pattern) != -1
+    else
+      pattern.test(@data)
+
 db = new Database('test/data/1Password.agilekeychain')
 db.unlock('master-password')
 
@@ -37,6 +43,25 @@ render = (name, assert) ->
   stream.data
 
 module.exports =
+  'Renderer#renderRaw renders the raw item data': (beforeExit, assert) ->
+    item = db.search('my-login')[0]
+    renderer = new Renderer(item)
+    stream = new StringStream()
+    renderer.renderRaw(stream)
+
+    assert.ok(stream.contains(/value.*my-password/))
+
+  'Renderer#render renders the raw item data for unknown types': (beforeExit, assert) ->
+    source = db.search('my-login')[0]
+    item = {}
+    for name, value of source
+      item[name] = if name == 'type' then 'unknown' else value
+    renderer = new Renderer(item)
+    stream = new StringStream()
+    renderer.render(stream)
+
+    assert.ok(stream.contains(/value.*my-password/))
+
   'Renderer#render renders a Login item correctly': (beforeExit, assert) ->
     assert.equal(render('my-login'), RENDERINGS['my-login'])
 
