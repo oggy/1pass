@@ -9,18 +9,32 @@ class StringStream
   write: (data) ->
     @data += data
 
-  contains: (string) ->
-    @data.indexOf(string) != -1
+  contains: (pattern) ->
+    if typeof(pattern) == 'string'
+      @data.indexOf(pattern) != -1
+    else
+      pattern.test(@data)
 
-makeApp = (args, password) ->
+class Prompter
+  constructor: (@databasePassword, @databasePath) ->
+
+  password: (prompt, callback) ->
+    if @databasePassword
+      callback(@databasePassword)
+    else
+      throw 'no password configured'
+
+  prompt: (prompt, callback) ->
+    if @databasePath
+      callback(@databasePath)
+    else
+      throw 'no database path configured'
+
+makeApp = (args, databasePassword, databasePath) ->
   output = new StringStream()
   error = new StringStream()
-  app = new App(['node', 'script'].concat(args), output, error)
-  if (password)
-    app.askPassword = (c) -> c(password)
-  else
-    app.askPassword = (c) -> throw 'unexpected password prompt'
-  app
+  prompter = new Prompter(databasePassword, databasePath)
+  new App(['node', 'script'].concat(args), output, error, prompter)
 
 module.exports =
   "App#run show returns 0 if the password is correct": (beforeExit, assert) ->
@@ -73,3 +87,36 @@ module.exports =
     app.run (status) ->
       assert.ok(app.output.contains('my-login'))
       assert.ok(app.output.contains('my-password'))
+
+  "App#run, when a database path is specified and does not exist, exits with an error": (beforeExit, assert) ->
+    app = makeApp(['-d', 'invalid.agilekeychain', 'list'])
+    app.run (status) ->
+      assert.ok(app.error.contains("can't find keychain: invalid.agilekeychain"))
+      assert.equal(status, 1)
+
+  "App#run, when a database path is specified and exists runs the command": (beforeExit, assert) ->
+    app = makeApp(['-d', 'test/data/1Password.agilekeychain', 'list'])
+    app.run (status) ->
+      assert.ok(app.output.contains('my-login'))
+      assert.equal(status, 0)
+
+  "App#run, when no database path is specified, can find one in the default paths": (beforeExit, assert) ->
+    app = makeApp(['list'])
+    app.defaultDatabasePaths = ['test/data/1Password.agilekeychain']
+    app.run (status) ->
+      assert.ok(app.output.contains('my-login'))
+      assert.equal(status, 0)
+
+  "App#run, when no database path is specified, and a valid path is given when prompted, runs the command": (beforeExit, assert) ->
+    app = makeApp(['list'], null, 'test/data/1Password.agilekeychain')
+    app.defaultDatabasePaths = ['invalid.agilekeychain']
+    app.run (status) ->
+      assert.ok(app.output.contains('my-login'))
+      assert.equal(status, 0)
+
+  "App#run, when no database path is specified, and an invalid path is given when prompted, exits with an error": (beforeExit, assert) ->
+    app = makeApp(['list'], null, 'invalid-prompted.agilekeychain')
+    app.defaultDatabasePaths = ['invalid-default.agilekeychain']
+    app.run (status) ->
+      assert.ok(app.error.contains(/can\'t find keychain:.*invalid-prompted.agilekeychain/))
+      assert.equal(status, 1)
