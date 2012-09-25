@@ -378,6 +378,14 @@ my-social-security-number (Social Security Number)
   Notes:
     my-notes
 
+## my-password
+
+my-password (Password)  my-service-name
+  Password: my-password
+
+  Notes:
+    my-notes
+
 ## my-minimal-login
 
 my-minimal-login (Login)

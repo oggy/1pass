@@ -131,5 +131,8 @@ module.exports =
   'Renderer#render renders a Social Security Number item correctly': (beforeExit, assert) ->
     assert.equal(render('my-social-security-number'), RENDERINGS['my-social-security-number'])
 
+  'Renderer#render renders a Password item correctly': (beforeExit, assert) ->
+    assert.equal(render('my-password'), RENDERINGS['my-password'])
+
   'Renderer#render renders a minimal Login item correctly': (beforeExit, assert) ->
     assert.equal(render('my-minimal-login'), RENDERINGS['my-minimal-login'])
