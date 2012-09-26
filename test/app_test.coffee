@@ -1,4 +1,4 @@
-{App} = require 'one_pass'
+{App} = require '..'
 
 keychainPath = 'test/data/1Password.agilekeychain'
 

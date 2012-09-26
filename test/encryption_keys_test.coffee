@@ -1,5 +1,5 @@
 fs = require 'fs'
-{EncryptionKeys} = require 'one_pass'
+{EncryptionKeys} = require '..'
 
 data = JSON.parse(fs.readFileSync('test/data/1Password.agilekeychain/data/default/encryptionKeys.js').toString())
 

@@ -1,7 +1,7 @@
-LIBS = $(wildcard node_modules/*.coffee node_modules/*/*.coffee)
+LIBS = $(wildcard index.coffee lib/*.coffee)
 LIB_JS = $(LIBS:%.coffee=%.js)
-TESTS = $(wildcard test/*.coffee test/*/*.coffee)
-VENDOR_JS = node_modules/one_pass/vendor.js
+TESTS = $(wildcard test/*.coffee)
+VENDOR_JS = lib/vendor.js
 
 .DEFAULT_TARGET = default
 default: $(LIB_JS) $(VENDOR_JS)

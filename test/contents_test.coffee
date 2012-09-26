@@ -1,5 +1,5 @@
 fs = require 'fs'
-{Contents} = require 'one_pass'
+{Contents} = require '..'
 
 makeItem = (attributes) ->
   [

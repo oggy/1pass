@@ -1,4 +1,4 @@
-{GibberishAES} = require 'one_pass/vendor'
+{GibberishAES} = require './vendor'
 
 class EncryptionKeys
   constructor: (data) ->

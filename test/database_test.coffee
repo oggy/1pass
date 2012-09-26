@@ -1,4 +1,4 @@
-{Database} = require 'one_pass'
+{Database} = require '..'
 
 module.exports =
   'Database#unlock returns true and unlocks the database if the given password is correct': (beforeExit, assert) ->

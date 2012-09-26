@@ -2,8 +2,8 @@ util = require 'util'
 fs = require 'fs'
 pathlib = require 'path'
 Commander = require 'commander'
-Database = require 'one_pass/database'
-Renderer = require 'one_pass/renderer'
+Database = require './database'
+Renderer = require './renderer'
 
 class App
   constructor: (args, @output, @error, @prompter) ->

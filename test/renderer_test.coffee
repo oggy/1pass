@@ -1,5 +1,5 @@
 fs = require 'fs'
-{Database,Renderer} = require 'one_pass'
+{Database,Renderer} = require '..'
 
 loadRenderings = ->
   text = fs.readFileSync('test/data/renderings.txt').toString()
