@@ -86,7 +86,7 @@ class App
       @prompter.prompt "Where is your keychain? ", (response) =>
         path = @expandPath(response)
         if fs.existsSync(path)
-          callback(response)
+          callback(path)
         else
           @error.write("can't find keychain: #{path}\n")
           callback(null)
