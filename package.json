@@ -11,7 +11,7 @@
 
   "bin": {"1pass": "./bin/1pass"},
   "directories": {"bin": "bin", "lib": "lib", "test": "test"},
-  "scripts": {"test": "make test"},
+  "scripts": {"test": "make test", "prepublish": "make"},
   "dependencies": {"commander": "~1.0.4"},
   "devDependencies": {"expresso": "~0.9.2"},
   "engines": {"node": "> 0.8.0"}
