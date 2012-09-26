@@ -18,5 +18,5 @@ clean:
 %.js: %.coffee
 	coffee -c $<
 
-$(VENDOR_JS): vendor/*.js
-	cat $^ vendor_exports.js > $@
+$(VENDOR_JS): vendor/*.js vendor_exports.js
+	cat $^ > $@
