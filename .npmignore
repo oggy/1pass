@@ -1,0 +1,7 @@
+/Makefile
+/index.coffee
+/lib/*.coffee
+/node_modules
+/test
+/vendor
+/vendor_exports.js
