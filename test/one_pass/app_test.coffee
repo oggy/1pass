@@ -51,13 +51,13 @@ module.exports =
     app = makeApp(['-d', keychainPath, 'show', 'my-login'], 'master-password')
     app.run (status) ->
       assert.ok(app.output.contains('my-login'))
-      assert.ok(app.output.contains('my-password'))
+      assert.ok(app.output.contains('my-username'))
 
   "App#run show with -r prints raw representations": (beforeExit, assert) ->
     app = makeApp(['-d', keychainPath, '-r', 'show', 'my-login'], 'master-password')
     app.run (status) ->
-      assert.ok(app.output.contains('my-password'))
-      assert.ok(!app.output.contains('Password:'))
+      assert.ok(app.output.contains('my-username'))
+      assert.ok(!app.output.contains('Username:'))
 
   "App#run list returns 0 without asking for a password": (beforeExit, assert) ->
     app = makeApp(['-d', keychainPath, 'list', 'my-login'])
@@ -68,7 +68,7 @@ module.exports =
     app = makeApp(['-d', keychainPath, 'list'])
     app.run (status) ->
       assert.ok(app.output.contains('my-login'))
-      assert.ok(!app.output.contains('my-password'))
+      assert.ok(!app.output.contains('my-username'))
 
   "App#run list prints all items by default": (beforeExit, assert) ->
     app = makeApp(['-d', keychainPath, 'list'])
@@ -86,7 +86,7 @@ module.exports =
     app = makeApp(['-d', keychainPath, 'my-login'], 'master-password')
     app.run (status) ->
       assert.ok(app.output.contains('my-login'))
-      assert.ok(app.output.contains('my-password'))
+      assert.ok(app.output.contains('my-username'))
 
   "App#run, when a database path is specified and does not exist, exits with an error": (beforeExit, assert) ->
     app = makeApp(['-d', 'invalid.agilekeychain', 'list'])
