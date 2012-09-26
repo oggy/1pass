@@ -59,6 +59,7 @@ class App
     # Create a new Commander instance so tests don't share state.
     new Commander.constructor()
       .version('0.0.0')
+      .usage('[options] [ show | list ] [ QUERY ]')
       .description('1Password command line client.')
       .option('-d, --data <data>', 'path to keychain')
       .option('-r, --raw', 'show raw item data (for bug reports)')
