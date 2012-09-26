@@ -56,9 +56,10 @@ class App
         done(1)
 
   parseArgs: (args) ->
+    version = JSON.parse(fs.readFileSync(__dirname + '/../package.json')).version
     # Create a new Commander instance so tests don't share state.
     new Commander.constructor()
-      .version('0.0.0')
+      .version(version)
       .usage('[options] [ show | list ] [ QUERY ]')
       .description('1Password command line client.')
       .option('-d, --data <data>', 'path to keychain')
