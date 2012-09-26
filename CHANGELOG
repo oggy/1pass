@@ -1,0 +1,3 @@
+== 0.0.1
+
+* Tilde expansion is performed on database path when prompted.
