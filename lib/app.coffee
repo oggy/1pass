@@ -92,7 +92,7 @@ class App
           callback(null)
 
   expandPath: (path) ->
-    path = path.replace(/~/, process.env.HOME)
+    path = path.replace(/^~/, process.env.HOME)
     if path[0] != '/'
       path = process.cwd() + '/' + path
     pathlib.normalize(path)
