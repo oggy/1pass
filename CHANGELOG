@@ -1,3 +1,11 @@
-== 0.0.1
+== LATEST
+
+* Allow up to 3 password attempts.
+
+== 0.0.1 2012-09-26
 
 * Tilde expansion is performed on database path when prompted.
+
+== 0.0.0 2012-09-26
+
+* Hi.
