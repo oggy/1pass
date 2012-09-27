@@ -17,13 +17,14 @@ class StringStream
       pattern.test(@data)
 
 class Prompter
-  constructor: (@databasePassword, @databasePath) ->
+  constructor: (@databasePasswords, @databasePath=[]) ->
 
   password: (prompt, callback) ->
-    if @databasePassword
-      callback(@databasePassword)
+    password = @databasePasswords.shift()
+    if password
+      callback(password)
     else
-      throw 'no password configured'
+      throw 'no more passwords configured'
 
   prompt: (prompt, callback) ->
     if @databasePath
@@ -41,26 +42,32 @@ describe 'App', ->
   describe '#run', ->
     describe 'show', ->
       it "returns 0 if the password is correct", (done) ->
-        app = makeApp(['-d', keychainPath, 'show', 'my-login'], 'master-password')
+        app = makeApp(['-d', keychainPath, 'show', 'my-login'], ['master-password'])
         app.run (status) ->
           assert.equal(status, 0)
           done()
 
-      it "returns 1 if the password is incorrect", (done) ->
-        app = makeApp(['-d', keychainPath, 'show', 'my-login'], 'wrong')
+      it "returns 0 if the 3rd password attempt is correct", (done) ->
+        app = makeApp(['-d', keychainPath, 'show', 'my-login'], ['wrong', 'wrong', 'master-password'])
+        app.run (status) ->
+          assert.equal(status, 0)
+          done()
+
+      it "returns 1 if 3 password attempts are incorrect", (done) ->
+        app = makeApp(['-d', keychainPath, 'show', 'my-login'], ['wrong', 'wrong', 'wrong'])
         app.run (status) ->
           assert.equal(status, 1)
           done()
 
       it "prints the details of matched items", (done) ->
-        app = makeApp(['-d', keychainPath, 'show', 'my-login'], 'master-password')
+        app = makeApp(['-d', keychainPath, 'show', 'my-login'], ['master-password'])
         app.run (status) ->
           assert.ok(app.output.contains('my-login'))
           assert.ok(app.output.contains('my-username'))
           done()
 
       it "prints raw representations with -r", (done) ->
-        app = makeApp(['-d', keychainPath, '-r', 'show', 'my-login'], 'master-password')
+        app = makeApp(['-d', keychainPath, '-r', 'show', 'my-login'], ['master-password'])
         app.run (status) ->
           assert.ok(app.output.contains('my-username'))
           assert.ok(!app.output.contains('Username:'))
@@ -95,7 +102,7 @@ describe 'App', ->
           done()
 
     it "defaults to running the show command", (done) ->
-      app = makeApp(['-d', keychainPath, 'my-login'], 'master-password')
+      app = makeApp(['-d', keychainPath, 'my-login'], ['master-password'])
       app.run (status) ->
         assert.ok(app.output.contains('my-login'))
         assert.ok(app.output.contains('my-username'))

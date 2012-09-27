@@ -47,13 +47,17 @@ class App
       @output.write((item.name ? '(unnamed)') + '\n')
     done(0)
 
-  requirePassword: (done, callback) ->
+  requirePassword: (done, callback, attempt=1) ->
     @prompter.password 'Password: ', (password) =>
       if @database.unlock(password)
         callback(true)
       else
-        @output.write('Try again.\n')
-        done(1)
+        if attempt == 3
+          @error.write('Sorry.\n')
+          done(1)
+        else
+          @error.write('Try again.\n')
+          @requirePassword(done, callback, attempt + 1)
 
   parseArgs: (args) ->
     version = JSON.parse(fs.readFileSync(__dirname + '/../package.json')).version
