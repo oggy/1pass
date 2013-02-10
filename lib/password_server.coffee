@@ -11,7 +11,7 @@ class PasswordServer
     @stop =>
       child = child_process.fork(__dirname + '/password_server_child')
       child.on 'message', ->
-        callback(child.pid)
+        callback(child.pid) if callback
       child.send
         rcDir: @rcDir
         databasePath: @databasePath

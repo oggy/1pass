@@ -1,6 +1,8 @@
 == LATEST
 
 * Allow up to 3 password attempts.
+* Remember password for 5 minutes by default (use -r to change).
+* Render raw output with -R rather than -r.
 
 == 0.0.1 2012-09-26
 

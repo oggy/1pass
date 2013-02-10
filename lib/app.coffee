@@ -3,6 +3,7 @@ fs = require 'fs'
 pathlib = require 'path'
 Commander = require 'commander'
 Database = require './database'
+PasswordServer = require './password_server'
 Renderer = require './renderer'
 
 class App
@@ -15,7 +16,8 @@ class App
     ]
 
   run: (done) ->
-    @databasePath (path) =>
+    @findDatabase (path) =>
+      @databasePath = path
       if path
         @database = new Database(path)
         command = @configuration.args.shift()
@@ -47,30 +49,47 @@ class App
       @output.write((item.name ? '(unnamed)') + '\n')
     done(0)
 
-  requirePassword: (done, callback, attempt=1) ->
+  requirePassword: (done, callback) ->
+    @getPasswordServer().get (password) =>
+      if password and @database.unlock(password)
+        callback(true)
+      else
+        @promptForPassword(done, callback)
+
+  promptForPassword: (done, callback, attempt=1) ->
     @prompter.password 'Password: ', (password) =>
       if @database.unlock(password)
-        callback(true)
+        @getPasswordServer().start password, @configuration.remember * 1000, ->
+          callback(true)
       else
         if attempt == 3
           @error.write('Sorry.\n')
           done(1)
         else
           @error.write('Try again.\n')
-          @requirePassword(done, callback, attempt + 1)
+          @promptForPassword(done, callback, attempt + 1)
+
+  getPasswordServer: ->
+    if !@passwordServer
+      @passwordServer = new PasswordServer(@configuration.config, @configuration.data)
+    @passwordServer
 
   parseArgs: (args) ->
     version = JSON.parse(fs.readFileSync(__dirname + '/../package.json')).version
     # Create a new Commander instance so tests don't share state.
-    new Commander.constructor()
+    commander = new Commander.constructor()
       .version(version)
       .usage('[options] [ show | list ] [ QUERY ]')
       .description('1Password command line client.')
       .option('-d, --data <data>', 'path to keychain')
-      .option('-r, --raw', 'show raw item data (for bug reports)')
+      .option('-c, --config <dir>', 'path to config dir (default: ~/.1pass)')
+      .option('-r, --remember <secs>', 'remember password for this long (default: 5min)', Number, 300)
+      .option('-R, --raw', 'show raw item data (for bug reports)')
       .parse(args)
+    commander.config = @expandPath(commander.config or '~/.1pass')
+    commander
 
-  databasePath: (callback) ->
+  findDatabase: (callback) ->
     if (explicitPath = @configuration.data)
       if fs.existsSync(explicitPath)
         callback(explicitPath)
