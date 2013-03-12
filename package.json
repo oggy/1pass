@@ -1,6 +1,6 @@
 {
   "name": "1pass",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "1Password reader for the command line.",
   "homepage": "https://github.com/oggy/1pass",
   "keywords": ["1pass", "1password", "command-line"],

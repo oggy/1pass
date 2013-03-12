@@ -1,4 +1,4 @@
-== LATEST
+== 0.1.0 2013-03-11
 
 * Allow up to 3 password attempts.
 * Remember password for 5 minutes by default (use -r to change).
