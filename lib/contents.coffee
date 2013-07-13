@@ -44,7 +44,7 @@ class Contents.Item
     !@decrypted
 
   securityLevel: ->
-    @detail().openContents.securityLevel || 'SL5'
+    @detail().openContents?.securityLevel || 'SL5'
 
   detail: ->
     return @_detail if @_detail
