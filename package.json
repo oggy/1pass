@@ -5,6 +5,7 @@
   "homepage": "https://github.com/oggy/1pass",
   "keywords": ["1pass", "1password", "command-line"],
   "license": "MIT",
+  "repository": {"type": "git", "url": "https://github.com/oggy/1pass.git"},
 
   "author": "George Ogata <george.ogata@gmail.com>",
   "bugs": "https://github.com/oggy/1pass/issues",
